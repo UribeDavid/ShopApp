@@ -1,0 +1,67 @@
+<div class="container-box">
+  <div class="content-box">
+    <nz-card 
+      class="shadow w-100"
+      [nzTitle]="authTitle">
+
+      <ng-template #authTitle>
+        <div class="w-100 text-center text-title">
+          <i class="icon-title" nz-icon nzType="shop" nzTheme="twotone"></i>&nbsp;{{ signInMode ? 'Ingresar' : 'Registrarse' }}
+        </div>
+      </ng-template>
+
+      <form [formGroup]="authForm">
+        <div class="w-100">
+          <nz-input-group [nzPrefix]="prefixTemplateUser">
+            <ng-template #prefixTemplateUser><i nz-icon nzType="user"></i>&nbsp;<strong>Email</strong></ng-template>
+            <input 
+              [ngClass]="authForm.get('email').invalid && submitted && !signInMode ? 'input-invalid' : '' "
+              formControlName="email"
+              nz-input
+              type="text"
+            >
+          </nz-input-group>
+          <span 
+            *ngIf="authForm.get('email').invalid && submitted && !signInMode" 
+            class="text-danger">
+            Email invalido
+          </span>
+        </div>
+        
+        <div class="w-100 mt-2">
+          <nz-input-group [nzPrefix]="prefixTemplatePass">
+            <ng-template #prefixTemplatePass><i nz-icon nzType="lock"></i>&nbsp;<strong>Contraseña</strong></ng-template>
+            <input 
+              [ngClass]="authForm.get('password').invalid && submitted && !signInMode ? 'input-invalid' : '' "
+              formControlName="password"
+              nz-input
+              type="password"
+            >
+          </nz-input-group>
+          <span 
+            *ngIf="authForm.get('password').invalid && submitted && !signInMode" 
+            class="text-danger">
+            Contraseña invalida, debe contener al menos 6 caracteres
+          </span>
+        </div>
+
+        <button
+          (click)="authSubmit()"
+          [nzLoading]="isLoading"
+          nz-button
+          nzType="primary"
+          class="w-100 mt-2">{{ signInMode ? 'Ingresar' : 'Registrar' }}</button>
+        
+        <div class="w-100 mt-2 text-center">
+          <a 
+            (click)="signInMode = !signInMode"
+            nz-button 
+            nzType="link">
+            {{ signInMode ? 'No tienes cuenta? Registrate' : 'Inicia Sesión' }}
+          </a>
+        </div>
+      </form>
+      
+    </nz-card>
+  </div>
+</div>

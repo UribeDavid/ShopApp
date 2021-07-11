@@ -1,0 +1,73 @@
+<div class="container-fluid pt-3">
+  <div class="row">
+    <div class="col-8">
+      <h3>Lista de Productos</h3>
+    </div>
+    <div class="col-4">
+      <button
+        (click)="openProductModal()"
+        class="float-right"
+        nz-button
+        nzType="primary">
+        Crear Producto
+      </button>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <ng-container *ngIf="products.length; else noProducts">
+      <div 
+        *ngFor="let product of products"
+        class="col-12 py-2 col-sm-6 col-md-4 col-xl-3">
+        <nz-card 
+          class="shadow-sm w-100" 
+          [nzTitle]="product.nombre" 
+          [nzActions]="[addAction, editAction]"
+          [nzExtra]="extraActions">
+          <p class="mb-0 font-weight-bold">{{ product.sku }}</p>
+          <p class="mb-0">{{ product.descripcion }}</p>
+        </nz-card>
+        <ng-template #extraActions>
+          <i
+            nz-popconfirm
+            nzPopconfirmTitle="¿Está seguro de eliminar el producto?"
+            (nzOnConfirm)="deleteProduct(product.id)"
+            class="cursor-pointer text-danger action-icon icon-scale" 
+            nz-icon 
+            nzType="delete" 
+            nzTheme="fill"></i>
+        </ng-template>
+        <ng-template #addAction>
+          <i
+            (click)="addProductToCart(product)"
+            nz-tooltip
+            [nzTooltipTitle]="'Agragar al carrito'"
+            class="cursor-pointer action-icon icon-scale" 
+            nz-icon 
+            nzType="plus-circle" 
+            nzTwotoneColor="#28a745"
+            nzTheme="twotone"></i>
+        </ng-template>
+        <ng-template #editAction>
+          <i
+            (click)="openProductModal(product)"
+            nz-tooltip
+            [nzTooltipTitle]="'Editar producto'"
+            class="cursor-pointer action-icon icon-scale" 
+            nz-icon 
+            nzType="edit" 
+            nzTheme="twotone"></i>
+        </ng-template>
+      </div>
+    </ng-container>
+    <ng-template #noProducts>
+      <div class="col-12">
+        <nz-empty 
+          nzNotFoundImage="simple"
+          [nzNotFoundContent]="'No hay productos creados'"></nz-empty>
+      </div>
+    </ng-template>
+  </div>
+</div>
+<app-modal-manage-product
+  (closed)="modalClosed($event)">
+</app-modal-manage-product>

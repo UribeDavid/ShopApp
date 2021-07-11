@@ -1,0 +1,30 @@
+.container-box {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-box {
+    width: 90%;
+}
+
+.icon-title {
+    font-size: 2rem;
+}
+
+.text-title {
+    font-size: 1.3rem;
+}
+
+@media (min-width: 550px) {
+    .content-box {
+        width: 75%;
+    }
+}
+
+@media (min-width: 850px) {
+    .content-box {
+        width: 40%;
+    }
+}

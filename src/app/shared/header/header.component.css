@@ -1,0 +1,23 @@
+.header-position {
+    top: 0; 
+    position: fixed; 
+    z-index: 1;
+}
+
+.header-icon {
+    font-size: 1.5rem!important;
+}
+
+::ng-deep .ant-page-header-heading-sub-title {
+    display: none!important;
+}
+
+@media (min-width: 550px) {
+    ::ng-deep.ant-page-header-heading-sub-title {
+        display: unset!important;
+    }
+
+    .header-icon {
+        font-size: 1.8rem;
+    }
+}

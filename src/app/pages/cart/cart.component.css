@@ -1,0 +1,3 @@
+::ng-deep .nz-grid-padding > .ant-card-body > .ant-card-grid {
+    padding: 8px 24px!important;
+}

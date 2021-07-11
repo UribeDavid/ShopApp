@@ -1,0 +1,90 @@
+<div class="container-fluid pt-3">
+  <div class="row">
+    <div class="col-8">
+      <h3>Productos del Carrito</h3>
+    </div>
+    <div class="col-4">
+      <button
+        (click)="saveCart()"
+        [nzLoading]="isLoading"
+        class="float-right app-btn-success"
+        nz-button
+        nzType="primary">
+        Guardar Carrito
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <ng-container *ngIf="products.length; else noProducts">
+      <div 
+        *ngFor="let product of products"
+        class="col-12 col-md-4 mt-2">
+        <nz-card 
+          class="w-100 shadow-sm nz-grid-padding"
+          [nzTitle]="productTitle">
+          <ng-template #productTitle>
+            <div class="container-fluid px-0">
+              <div class="row">
+                <div class="col-8">{{ product.nombre }}</div>
+                <div class="col-4">
+                  <i
+                    (click)="deleteProduct(product.id)" 
+                    class="text-danger float-right cursor-pointer" 
+                    nz-icon 
+                    nzType="close" 
+                    nzTheme="outline"></i></div>
+              </div>
+            </div>
+          </ng-template>
+          
+          <div nz-card-grid [nzHoverable]="false" [ngStyle]="{width: '50%', textAlign: 'left', fontWeight: '500'}">{{ product.sku }}</div>
+          <div nz-card-grid [nzHoverable]="false" [ngStyle]="{width: '50%', textAlign: 'center'}">
+            <div class="container-fluid">
+              <div class="row">
+                <div 
+                  (click)="changeQuantityProduct(product.id, true)" 
+                  class="col-4 cursor-pointer text-success">
+                  <i
+                    class="" 
+                    nz-icon 
+                    nzType="plus" 
+                    nzTheme="outline"></i>
+                </div>
+                <div class="col-4">
+                  <nz-badge 
+                    nzStandalone 
+                    [nzCount]="product.quantity" 
+                    [nzStyle]="{ backgroundColor: '#2db7f5' }">
+                  </nz-badge>
+                </div>
+                <div 
+                  (click)="changeQuantityProduct(product.id, false)" 
+                  class="col-4 cursor-pointer text-danger">
+                  <i
+                    class="" 
+                    nz-icon 
+                    nzType="minus" 
+                    nzTheme="outline"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div nz-card-grid [nzHoverable]="false" [ngStyle]="{width: '100%', textAlign: 'left'}">{{ product.descripcion }}</div>
+        </nz-card>
+      </div>
+    </ng-container>
+
+    <ng-template #noProducts>
+      <div class="col-12">
+        <nz-empty 
+          nzNotFoundImage="simple"
+          [nzNotFoundContent]="'No hay productos en el carrito'"
+          [nzNotFoundFooter]="footerNoProducts"></nz-empty>
+          <ng-template #footerNoProducts>
+            <a nz-button nzType="link" [routerLink]="['/products']">Agregar productos</a>
+          </ng-template>
+      </div>
+    </ng-template>
+    
+  </div>
+</div>

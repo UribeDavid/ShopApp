@@ -1,0 +1,56 @@
+<nz-modal 
+  [(nzVisible)]="isVisible" 
+  nzTitle="Manage Product" 
+  (nzOnOk)="handleOk()"
+  (nzOnCancel)="handleCancel()">
+  <ng-container *nzModalContent>
+    <form [formGroup]="productForm">
+      <div class="container fluid">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <label class="mb-0">Nombre</label>
+            <input 
+              formControlName="nombre"
+              [ngClass]="productForm.get('nombre').invalid && productForm.get('nombre').touched? 'input-invalid w-100' : 'w-100'"
+              placeholder="Digite el nombre..."
+              nz-input
+              type="text">
+          </div>
+          <div class="col-12 col-md-6 mt-2 mt-md-0">
+            <label class="mb-0">Sku</label>
+            <input 
+              formControlName="sku"
+              [ngClass]="productForm.get('sku').invalid && productForm.get('sku').touched ? 'input-invalid w-100' : 'w-100'"
+              placeholder="Digite el SKU..."
+              nz-input
+              type="text">
+          </div>
+          <div class="col-12 mt-2">
+            <label class="mb-0">Descripción</label>
+            <textarea
+              formControlName="descripcion"
+              [ngClass]="productForm.get('descripcion').invalid && productForm.get('descripcion').touched ? 'input-invalid w-100' : 'w-100'"
+              nz-input
+              placeholder="Añada una descripción..."
+              [nzAutosize]="{ minRows: 2, maxRows: 3 }"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+  <ng-container *nzModalFooter>
+    <button nz-button nzType="default" (click)="handleCancel()">Cancelar</button>
+    <button 
+      (click)="handleOk()"
+      nz-tooltip
+      [nzTooltipTitle]="!productForm.valid ? 'Los campos no pueden estar vacíos' : ''"
+      [disabled]="!productForm.valid"
+      nz-button 
+      class="app-btn-success"
+      nzType="primary" 
+      [nzLoading]="isLoading">
+      {{ data ? 'Editar': 'Guardar' }}
+    </button>
+  </ng-container>
+</nz-modal>

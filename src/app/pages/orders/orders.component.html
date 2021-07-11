@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h3>Lista de Ordenes</h3>
+    </div>
+  </div>
+  <ng-container *ngIf="true">
+    <div class="row mt-2" *ngFor="let order of orders">
+      <div class="col-12">
+        <nz-collapse>
+          <nz-collapse-panel 
+            [nzHeader]="orderTitle"
+            [nzExtra]="statusManagement">
+            <ng-template #orderTitle>
+              <h5 class="mb-0 font-weight-bold d-inline-block">
+                {{'Orden ID: '+order.id}}
+              </h5>
+            </ng-template>
+            
+            <ng-template #statusManagement>
+              <nz-switch 
+                [nzDisabled]="order.isComplete"
+                (ngModelChange)="updateStatus(order)"
+                [nzLoading]="order.isLoading"
+                nzCheckedChildren="Complete" 
+                nzUnCheckedChildren="Pending"
+                [ngModel]="order.isComplete" 
+                (click)="$event.stopPropagation()"></nz-switch>
+            </ng-template>
+            <div class="container-fluid">
+              <div 
+                *ngFor="let prod of order.products"
+                class="row">
+                <div class="col-6">
+                  <p class="d-inline-block">ID Producto: {{ prod.id }}</p>
+                </div>
+                <div class="col-6 text-center">
+                  Cantidad:
+                  <nz-badge 
+                    nzStandalone 
+                    [nzCount]="prod.quantity" 
+                    [nzStyle]="{ backgroundColor: '#2db7f5' }">
+                  </nz-badge>
+                </div>
+              </div>
+            </div>
+          </nz-collapse-panel>
+        </nz-collapse>
+      </div>
+    </div>
+  </ng-container>
+  
+</div>

@@ -1,0 +1,107 @@
+<nz-page-header class="header-position bg-white site-page-header border shadow-sm w-100" [nzTitle]="title" nzSubtitle="¡Adquiere tus productos favoritos!">
+  <ng-template #title>
+    <div 
+      (click)="navigateTo('products')" 
+      class="cursor-pointer">
+      <i 
+        style="font-size: 40px;" 
+        nz-icon 
+        nzType="shop" 
+        nzTheme="twotone">
+      </i>&nbsp;ShopApp
+    </div>
+  </ng-template>
+  <nz-page-header-extra class="mr-4 mr-md-5">
+    <div 
+      (click)="navigateTo('products')"
+      class="d-none d-md-inline-block h-100 mx-2 w-25 text-center text-primary cursor-pointer">
+      <i 
+        class="header-icon"  
+        nz-icon 
+        nzType="shop" 
+        nzTheme="twotone">
+      </i>
+      <p class="ml-0 mb-0">Products</p>
+    </div>
+    <div 
+      (click)="navigateTo('orders')"
+      class="d-none d-md-inline-block h-100 mx-2 w-25 text-center text-success cursor-pointer">
+      <i
+        class="header-icon" 
+        nz-icon 
+        nzType="solution" 
+        nzTheme="outline"></i>
+      <p class="ml-0 mb-0">Orders</p>
+    </div>
+    <div 
+      (click)="navigateTo('cart')"
+      class="d-none d-md-inline-block h-100 mx-2 w-25 text-center cursor-pointer">
+      <nz-badge [nzCount]="amountProducts">
+        <i
+          class="header-icon" 
+          nz-icon 
+          nzType="shopping-cart" 
+          nzTheme="outline"></i>
+        <p class="ml-0 mb-0">Cart</p>
+      </nz-badge>
+    </div>
+    <div 
+      nz-popconfirm
+      nzPopconfirmTitle="Are you sure?"
+      (nzOnConfirm)="signOut()"
+      class="d-none d-md-inline-block h-100 w-25 text-center text-danger cursor-pointer">
+      <i
+        class="header-icon" 
+        nz-icon 
+        nzType="logout" 
+        nzTheme="outline"></i>
+      <p class="ml-0 mb-0">Logout</p>
+    </div>
+    <a class="d-inline-block d-md-none header-icon" nz-dropdown [nzDropdownMenu]="menu">
+      <i nz-icon nzType="menu" nzTheme="outline"></i>
+    </a>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li 
+          class="text-success"
+          (click)="navigateTo('products')"
+          nz-menu-item>
+          <i 
+            class="header-icon"
+            nz-icon 
+            nzType="shop" 
+            nzTheme="twotone">
+          </i>
+        </li>
+        <li 
+          class="text-success"
+          (click)="navigateTo('orders')"
+          nz-menu-item>
+          <i
+            class="header-icon" 
+            nz-icon 
+            nzType="solution" 
+            nzTheme="outline"></i>
+        </li>
+        <li 
+          (click)="navigateTo('cart')"
+          nz-menu-item>
+          <i
+            class="header-icon" 
+            nz-icon 
+            nzType="shopping-cart" 
+            nzTheme="outline"></i>
+        </li>
+        <li 
+          (click)="signOut()"
+          nz-menu-item nzDanger>
+          <i
+            class="header-icon" 
+            nz-icon 
+            nzType="logout" 
+            nzTheme="outline"></i>
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+  </nz-page-header-extra>
+</nz-page-header>
