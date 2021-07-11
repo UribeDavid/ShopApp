@@ -39,7 +39,11 @@ export class AuthComponent implements OnInit {
 
   signIn(): void {
     this.isLoading = true;
-    this.submitted = true;
+    if (!this.authForm.get('email').value || !this.authForm.get('password').value) {
+      this.isLoading = false;
+      this._nzNotificationService.error('¡Error!', 'Credenciales no pueden ser vacías');
+      return;
+    }
     this._authService.signIn(this.authForm.value)
         .then((userCredential) => {
           // Signed in
@@ -60,14 +64,17 @@ export class AuthComponent implements OnInit {
 
   signUp(): void {
     this.isLoading = true;
-    if (this.authForm.invalid) {
+    this.submitted = true;
+    if (!this.authForm.get('email').value || !this.authForm.get('password').value) {
       this.isLoading = false;
+      this._nzNotificationService.error('¡Error!', 'Credenciales no pueden ser vacías');
       return;
     }
     this._authService.signUp(this.authForm.value)
         .then((userCredential) => {
           this.isLoading = false;
           this._nzNotificationService.success('¡Operación Existosa!', 'Registro realizado correctamente');
+          this.submitted = false;
           this.signInMode = true;
         })
         .catch((err) => {

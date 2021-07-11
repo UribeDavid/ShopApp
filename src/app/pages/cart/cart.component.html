@@ -3,7 +3,9 @@
     <div class="col-8">
       <h3>Productos del Carrito</h3>
     </div>
-    <div class="col-4">
+    <div 
+      *ngIf="products.length"
+      class="col-4">
       <button
         (click)="saveCart()"
         [nzLoading]="isLoading"
