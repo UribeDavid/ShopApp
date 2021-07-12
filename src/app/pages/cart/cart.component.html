@@ -39,20 +39,22 @@
             </div>
           </ng-template>
           
-          <div nz-card-grid [nzHoverable]="false" [ngStyle]="{width: '50%', textAlign: 'left', fontWeight: '500'}">{{ product.sku }}</div>
-          <div nz-card-grid [nzHoverable]="false" [ngStyle]="{width: '50%', textAlign: 'center'}">
+          <div nz-card-grid [nzHoverable]="false" [ngStyle]="{width: '100%', textAlign: 'center', fontWeight: '500'}">
             <div class="container-fluid">
               <div class="row">
+                <div class="col-12 my-1 my-md-0 col-md-6 text-left">
+                  {{ product.sku }}
+                </div>
                 <div 
                   (click)="changeQuantityProduct(product.id, true)" 
-                  class="col-4 cursor-pointer text-success">
+                  class="col-4 my-1 my-md-0 col-md-2 cursor-pointer text-success">
                   <i
                     class="" 
                     nz-icon 
                     nzType="plus" 
                     nzTheme="outline"></i>
                 </div>
-                <div class="col-4">
+                <div class="col-4 my-1 my-md-0 col-md-2">
                   <nz-badge 
                     nzStandalone 
                     [nzCount]="product.quantity" 
@@ -61,7 +63,7 @@
                 </div>
                 <div 
                   (click)="changeQuantityProduct(product.id, false)" 
-                  class="col-4 cursor-pointer text-danger">
+                  class="col-4 my-1 my-md-0 col-md-2 cursor-pointer text-danger">
                   <i
                     class="" 
                     nz-icon 

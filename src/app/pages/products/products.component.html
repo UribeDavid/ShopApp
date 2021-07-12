@@ -36,22 +36,28 @@
             nzType="delete" 
             nzTheme="fill"></i>
         </ng-template>
-        <ng-template #addAction>
-          <i
-            (click)="addProductToCart(product)"
-            nz-tooltip
-            [nzTooltipTitle]="'Agragar al carrito'"
-            class="cursor-pointer action-icon icon-scale" 
-            nz-icon 
-            nzType="plus-circle" 
-            nzTwotoneColor="#28a745"
-            nzTheme="twotone"></i>
+        <ng-template 
+          #addAction>
+          <nz-badge 
+            [nzCount]="plusCart"
+            (click)="addProductToCart(product)">
+            <ng-template #plusCart>
+              <i 
+                class="text-success cursor-pointer" 
+                nz-icon 
+                nzType="plus" 
+                nzTheme="outline"></i>
+            </ng-template>
+            <i 
+              class="d-inline-block text-success cursor-pointer action-icon icon-scale" 
+              nz-icon 
+              nzType="shopping-cart" 
+              nzTheme="outline"></i>
+          </nz-badge>
         </ng-template>
         <ng-template #editAction>
           <i
             (click)="openProductModal(product)"
-            nz-tooltip
-            [nzTooltipTitle]="'Editar producto'"
             class="cursor-pointer action-icon icon-scale" 
             nz-icon 
             nzType="edit" 

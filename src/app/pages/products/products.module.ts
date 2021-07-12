@@ -13,12 +13,12 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { HttpClientModule } from '@angular/common/http';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
-import { DeleteFill, EditTwoTone, PlusCircleTwoTone } from '@ant-design/icons-angular/icons';
+import { DeleteFill, EditTwoTone, PlusOutline, ShoppingCartOutline } from '@ant-design/icons-angular/icons';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
 
 // Ant-desing icons
-const icons: IconDefinition[] = [ DeleteFill, EditTwoTone, PlusCircleTwoTone ];
+const icons: IconDefinition[] = [ DeleteFill, EditTwoTone, PlusOutline, ShoppingCartOutline ];
 
 @NgModule({
   imports: [
@@ -33,7 +33,7 @@ const icons: IconDefinition[] = [ DeleteFill, EditTwoTone, PlusCircleTwoTone ];
     NzNotificationModule,
     ModalManageProductModule,
     NzEmptyModule,
-    NzToolTipModule
+    NzBadgeModule,
   ],
   declarations: [ProductsComponent]
 })
